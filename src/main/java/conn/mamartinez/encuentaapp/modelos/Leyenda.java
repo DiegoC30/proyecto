@@ -8,6 +8,7 @@ public class Leyenda {
 	private String nombre; //Ejemplo s, cs, av
 	private String descripcion; //Ejemplo: siempre, casi siempre, algunas veces
 
+
 	public Leyenda(int id, String nombre, String descripcion) {
 		this.id = id;
 		this.nombre = nombre;

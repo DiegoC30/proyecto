@@ -16,6 +16,7 @@ public class Pregunta {
 		this.lenyendas = lenyendas;
 	}
 
+
 	public int getId() {
 		return id;
 	}

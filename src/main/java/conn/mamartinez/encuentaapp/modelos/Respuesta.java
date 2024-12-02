@@ -1,6 +1,6 @@
 package conn.mamartinez.encuentaapp.modelos;
 
-
+import java.util.Scanner;
 import java.time.LocalDate;
 
 public class Respuesta {
