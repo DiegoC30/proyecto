@@ -1,5 +1,6 @@
 package conn.mamartinez.encuentaapp;
 
+import conn.mamartinez.encuentaapp.DAO.RespuestaDAO;
 import conn.mamartinez.encuentaapp.modelos.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -54,7 +55,10 @@ public class Main {
         // Inicializar Scanner para la entrada del usuario
         Scanner scanner = new Scanner(System.in);
 
-        // Crear lista para almacenar respuestas
+        // Inicializar DAO
+        RespuestaDAO respuestaDAO = new RespuestaDAO();
+
+        // Crear lista para almacenar respuestas localmente
         List<Respuesta> respuestas = new ArrayList<>();
 
         // Recorrer cada pregunta, mostrarla y registrar la respuesta del usuario
@@ -80,6 +84,11 @@ public class Main {
                 Respuesta respuesta = new Respuesta(
                         respuestas.size() + 1, LocalDate.now(), "2024-1", curso, docente, pregunta, respuestaSeleccionada
                 );
+
+                // Guardar respuesta en la base de datos
+                respuestaDAO.guardarRespuesta(respuesta);
+
+                // Agregar respuesta a la lista local
                 respuestas.add(respuesta);
             }
         }
@@ -91,6 +100,8 @@ public class Main {
             System.out.println("Respuesta: " + respuesta.getLeyenda().getDescripcion());
         }
 
+        // Cerrar recursos
+        respuestaDAO.cerrar();
         scanner.close();
     }
 }

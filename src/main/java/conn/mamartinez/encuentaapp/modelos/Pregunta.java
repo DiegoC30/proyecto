@@ -1,8 +1,13 @@
 package conn.mamartinez.encuentaapp.modelos;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Setter
+@Getter
 public class Pregunta {
 
 	private int id;
@@ -17,28 +22,5 @@ public class Pregunta {
 	}
 
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public List<Leyenda> getLenyendas() {
-		return lenyendas;
-	}
-
-	public void setLenyendas(List<Leyenda> lenyendas) {
-		this.lenyendas = lenyendas;
-	}
 }
 
