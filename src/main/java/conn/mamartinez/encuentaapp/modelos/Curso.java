@@ -1,21 +1,19 @@
 package conn.mamartinez.encuentaapp.modelos;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@Entity
 public class Curso {
 
+    // Getters y Setters
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id; // Clave primaria
 
-	private int id;
 	private String nombre;
-	private String descripcion;
 
-	public Curso(int id, String nombre, String descripcion) {
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-	}
-
-}//end Curso
+}

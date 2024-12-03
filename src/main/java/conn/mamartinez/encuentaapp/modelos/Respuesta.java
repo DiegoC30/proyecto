@@ -1,30 +1,31 @@
 package conn.mamartinez.encuentaapp.modelos;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Setter
 @Getter
+@Entity
 public class Respuesta {
-	private int id;
-	private LocalDate feha;
-	private String periodo;
-	private Curso curso;
-	private Docente docente;
-	private Pregunta pregunta;
-	private Leyenda leyenda;
 
-	public Respuesta(int id, LocalDate feha, String periodo, Curso curso,
-					 Docente docente, Pregunta pregunta, Leyenda leyenda) {
-		this.id = id;
-		this.feha = feha;
-		this.periodo = periodo;
-		this.curso = curso;
-		this.docente = docente;
-		this.pregunta = pregunta;
-		this.leyenda = leyenda;
-	}
+    // Getters y Setters
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // Generación automática de la clave primaria
+	private Long id;  // Clave primaria de la entidad Respuesta
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "docente_id")
+	private Docente docente;
+
+	@ManyToOne
+	@JoinColumn(name = "curso_id")
+	private Curso curso;
+
+	// Otros campos
+	private String fecha;
+	private Integer leyendaId;
+	private String periodo;
+	private Integer preguntaId;
 
 }

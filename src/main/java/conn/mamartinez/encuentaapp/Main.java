@@ -66,7 +66,7 @@ public class Main {
             System.out.println(pregunta.getNombre());
             System.out.println("Opciones:");
 
-            for (Leyenda leyenda : pregunta.getLenyendas()) {
+            for (Leyenda leyenda : pregunta.getLeyendas()) {
                 System.out.println(leyenda.getId() + ". " + leyenda.getDescripcion());
             }
 
@@ -75,14 +75,14 @@ public class Main {
             scanner.nextLine(); // Limpiar buffer
 
             // Buscar la leyenda seleccionada
-            Leyenda respuestaSeleccionada = pregunta.getLenyendas().stream()
+            Leyenda respuestaSeleccionada = pregunta.getLeyendas().stream()
                     .filter(l -> l.getId() == respuestaId)
                     .findFirst()
                     .orElse(null);
 
             if (respuestaSeleccionada != null) {
                 Respuesta respuesta = new Respuesta(
-                        respuestas.size() + 1, LocalDate.now(), "2024-1", curso, docente, pregunta, respuestaSeleccionada
+                        LocalDate.now(), "2024-1", curso, docente, pregunta, respuestaSeleccionada
                 );
 
                 // Guardar respuesta en la base de datos

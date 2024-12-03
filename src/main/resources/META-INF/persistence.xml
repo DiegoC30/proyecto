@@ -1,15 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-    <persistence-unit name="EncuestaAppPU" transaction-type="JTA">
-        <jta-data-source>java:/EncuestaAppDS</jta-data-source>
+    <persistence-unit name="EncuestaAppPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>conn.mamartinez.encuentaapp.modelos.Respuesta</class>
         <class>conn.mamartinez.encuentaapp.modelos.Pregunta</class>
         <class>conn.mamartinez.encuentaapp.modelos.Leyenda</class>
         <class>conn.mamartinez.encuentaapp.modelos.Docente</class>
         <class>conn.mamartinez.encuentaapp.modelos.Curso</class>
         <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>
+            <property name="hibernate.connection.username" value="JavaListe"/>
+            <property name="hibernate.connection.password" value="123"/>
+            <property name="hibernate.generate_statistics" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
