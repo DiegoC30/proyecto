@@ -1,35 +1,30 @@
 package conn.mamartinez.encuentaapp.modelos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
-@Setter
 @Getter
+@Setter
 @Entity
 public class Pregunta {
-
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private String nombre;
 
-	// Relación OneToMany con Leyenda
-	@OneToMany(mappedBy = "pregunta")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pregunta_id") // Indica que `pregunta_id` será la clave foránea en `Leyenda`
 	private List<Leyenda> leyendas;
 
-	// Constructor sin parámetros (requerido por Hibernate)
-	public Pregunta() {
-	}
+	public Pregunta() {}
 
-	// Constructor con parámetros
-	public Pregunta(int id, String nombre, List<Leyenda> leyendas) {
+	public Pregunta(Long id, String nombre, List<Leyenda> leyendas) {
 		this.id = id;
 		this.nombre = nombre;
 		this.leyendas = leyendas;
 	}
 }
-

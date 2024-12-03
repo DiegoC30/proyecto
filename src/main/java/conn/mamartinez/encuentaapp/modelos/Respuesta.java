@@ -4,28 +4,39 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
 public class Respuesta {
-
-    // Getters y Setters
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)  // Generación automática de la clave primaria
-	private Long id;  // Clave primaria de la entidad Respuesta
-
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "docente_id")
-	private Docente docente;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "curso_id")
 	private Curso curso;
 
-	// Otros campos
-	private String fecha;
-	private Integer leyendaId;
-	private String periodo;
-	private Integer preguntaId;
+	@ManyToOne
+	@JoinColumn(name = "docente_id")
+	private Docente docente;
 
+	@ManyToOne
+	@JoinColumn(name = "pregunta_id")
+	private Pregunta pregunta;
+
+	@ManyToOne
+	@JoinColumn(name = "leyenda_id")
+	private Leyenda leyenda;
+
+	private String periodo;
+
+	public Respuesta() {}
+
+	public Respuesta(String periodo, Curso curso, Docente docente, Pregunta pregunta, Leyenda leyenda) {
+		this.periodo = periodo;
+		this.curso = curso;
+		this.docente = docente;
+		this.pregunta = pregunta;
+		this.leyenda = leyenda;
+	}
 }

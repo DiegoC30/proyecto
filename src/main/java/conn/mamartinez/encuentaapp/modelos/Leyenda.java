@@ -1,32 +1,24 @@
 package conn.mamartinez.encuentaapp.modelos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
 public class Leyenda {
-
 	@Id
-	private int id;
-	private String nombre; // Ejemplo: S, CS, AV
-	private String descripcion; // Ejemplo: Siempre, Casi siempre, Algunas veces
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	// Relación ManyToOne con Pregunta
-	@ManyToOne
-	private Pregunta pregunta;
+	private String nombre;
 
-	// Constructor sin parámetros (requerido por Hibernate)
-	public Leyenda() {
-	}
+	private String descripcion;
 
-	// Constructor con parámetros
-	public Leyenda(int id, String nombre, String descripcion) {
-		this.id = id;
+	public Leyenda() {}
+
+	public Leyenda(String nombre, String descripcion) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}

@@ -7,32 +7,53 @@ import jakarta.persistence.Persistence;
 
 public class RespuestaDAO {
     private EntityManagerFactory emf;
-    private EntityManager em;
 
-    // Constructor que inicializa el EntityManagerFactory con el nombre de la unidad de persistencia
     public RespuestaDAO() {
-        this.emf = Persistence.createEntityManagerFactory("EncuestaAppPU"); // Nombre de la unidad de persistencia
+        this.emf = Persistence.createEntityManagerFactory("EncuestaAppPU");
     }
 
-    // Método para guardar una respuesta en la base de datos
+    // Método para guardar una respuesta específica
     public void guardarRespuesta(Respuesta respuesta) {
-        em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
-            em.getTransaction().begin(); // Inicia la transacción
-            em.persist(respuesta); // Persiste la entidad
-            em.getTransaction().commit(); // Realiza el commit de la transacción
+            em.getTransaction().begin();
+            em.persist(respuesta);
+            em.getTransaction().commit();
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback(); // Hace rollback si ocurre un error
+                em.getTransaction().rollback();
             }
-            e.printStackTrace(); // Imprime la traza del error
+            e.printStackTrace();
         } finally {
-            em.close(); // Cierra el EntityManager
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+    // Método genérico para guardar cualquier entidad
+    public void guardarEntidad(Object entidad) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(entidad);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
         }
     }
 
     // Método para cerrar el EntityManagerFactory
     public void cerrar() {
-        emf.close(); // Cierra la fábrica de EntityManager
+        if (emf.isOpen()) {
+            emf.close();
+        }
     }
 }

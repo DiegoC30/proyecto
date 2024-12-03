@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="1d4dd670-c64a-433a-b167-84549e6b5ae1" name="EncuestaAppPU/Hibernate Mapping">
+      <data-sources db="43ccf89b-5996-4781-928c-753490de145b" />
+      <scope>
+        <node kind="database" qname="encuestaapp" />
+      </scope>
+    </mapping>
+  </component>
+</project>

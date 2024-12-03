@@ -4,16 +4,23 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Entity
 public class Curso {
-
-    // Getters y Setters
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; // Clave primaria
+	private Long id;
 
 	private String nombre;
 
+	private String descripcion;
+
+	public Curso() {}
+
+	public Curso(Long id, String nombre, String descripcion) {
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+	}
 }
